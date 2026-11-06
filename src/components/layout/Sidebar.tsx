@@ -7,7 +7,6 @@ import {
   Database,
   Trees,
   Leaf,
-  ChevronLeft,
 } from "lucide-react";
 
 const navigation = [

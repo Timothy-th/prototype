@@ -1,4 +1,4 @@
-import { MapPin, CalendarDays, Bell, ChevronDown, Search } from "lucide-react";
+import { MapPin, CalendarDays, Bell, ChevronDown } from "lucide-react";
 
 const Topbar = () => {
   return (

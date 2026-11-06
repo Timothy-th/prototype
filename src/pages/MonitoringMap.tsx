@@ -1,4 +1,4 @@
-import { MapPin, Satellite, Layers, Trees, Activity, Info } from "lucide-react";
+import { MapPin, Satellite, Layers, Activity, Info } from "lucide-react";
 
 import ForestMap from "../components/dashboard/ForestMap";
 
