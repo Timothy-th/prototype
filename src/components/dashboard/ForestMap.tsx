@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+
+import { MapPin, Satellite, Layers3, Info } from "lucide-react";
+
 import MapLayers from "./map/MapLayers";
 
 type MapStyle = "satellite" | "street" | "terrain";
@@ -29,21 +32,21 @@ const forestIcon = L.divIcon({
   className: "",
   html: `
     <div style="
-      width: 34px;
-      height: 34px;
-      background: #285943;
-      border: 3px solid white;
+      width: 36px;
+      height: 36px;
+      background: #064E3B;
+      border: 2px solid #4ADE80;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 17px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      font-size: 18px;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.55);
     ">🌳</div>
   `,
-  iconSize: [34, 34],
-  iconAnchor: [17, 17],
+  iconSize: [36, 36],
+  iconAnchor: [18, 18],
 });
 
 const MapResizeHandler = () => {
@@ -66,36 +69,53 @@ const ForestMap = () => {
   const selectedLayer = mapLayers[mapStyle];
 
   return (
-    <section className="overflow-hidden rounded-2xl border border-[#E5ECE5] bg-white shadow-sm">
-      {/* Map header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-6">
+    <section className="overflow-hidden rounded-2xl border border-slate-800 bg-[#111827]">
+      {/* Header */}
+      <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-5">
         <div>
-          <h2 className="font-heading text-base font-bold text-ink">
-            Monitoring Area
+          <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[1.8px] text-emerald-400">
+            <MapPin size={14} />
+            Geographic Monitoring
+          </div>
+
+          <h2 className="font-heading text-lg font-bold text-slate-100">
+            Forest Monitoring Map
           </h2>
-          <p className="mt-1 text-xs text-muted">Bago Yoma, Myanmar</p>
+
+          <p className="mt-1 text-xs text-slate-500">
+            Explore the Central Bago Yoma study area
+          </p>
         </div>
 
-        <span className="rounded-full bg-[#FFF3DF] px-3 py-1 text-[10px] font-bold text-[#A47735]">
-          LOCATION PREVIEW
-        </span>
+        <div className="flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/10 px-3 py-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+          <span className="text-[10px] font-bold tracking-wide text-amber-400">
+            LOCATION PREVIEW
+          </span>
+        </div>
       </div>
 
-      {/* Map layer selector */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-y border-[#E5ECE5] px-6 py-3">
-        <span className="text-xs font-bold text-ink">Map Style</span>
+      {/* Map Controls */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-y border-slate-800 bg-[#0B1220]/50 px-6 py-3">
+        <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+          <Layers3 size={15} className="text-emerald-400" />
+          Map Layers
+        </div>
 
-        <div className="flex items-center gap-1 rounded-xl bg-[#F3F6F2] p-1">
+        <div className="flex items-center gap-1 rounded-xl border border-slate-700/80 bg-[#111827] p-1">
           {(Object.keys(mapLayers) as MapStyle[]).map((style) => (
             <button
               key={style}
               onClick={() => setMapStyle(style)}
-              className={`rounded-lg px-3 py-2 text-xs font-semibold transition ${
+              className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold transition-all ${
                 mapStyle === style
-                  ? "bg-forest text-white shadow-sm"
-                  : "text-muted hover:text-forest"
+                  ? "bg-emerald-600 text-white shadow-md shadow-emerald-950/40"
+                  : "text-slate-400 hover:bg-slate-800 hover:text-slate-100"
               }`}
             >
+              {style === "satellite" && <Satellite size={14} />}
+              {style === "street" && <MapPin size={14} />}
+              {style === "terrain" && <Layers3 size={14} />}
               {mapLayers[style].label}
             </button>
           ))}
@@ -103,7 +123,7 @@ const ForestMap = () => {
       </div>
 
       {/* Map */}
-      <div className="h-95 w-full">
+      <div className="relative h-95 w-full bg-[#0B1220]">
         <MapContainer
           center={[18.2, 95.8]}
           zoom={8}
@@ -115,11 +135,12 @@ const ForestMap = () => {
             attribution={selectedLayer.attribution}
             url={selectedLayer.url}
           />
+
           <MapLayers />
 
           <Marker position={[18.2, 95.8]} icon={forestIcon}>
             <Popup>
-              <strong>Bago Yoma</strong>
+              <strong>Central Bago Yoma</strong>
               <br />
               General location preview
               <br />
@@ -131,11 +152,16 @@ const ForestMap = () => {
         </MapContainer>
       </div>
 
-      <p className="p-4 text-[10px] leading-5 text-muted">
-        Map location is approximate. Official monitoring boundaries and
-        satellite-derived forest layers will be integrated after AOI
-        confirmation.
-      </p>
+      {/* Map Information */}
+      <div className="flex items-start gap-3 border-t border-slate-800 bg-[#0B1220]/60 px-6 py-4">
+        <Info size={15} className="mt-0.5 shrink-0 text-slate-500" />
+
+        <p className="text-[10px] leading-relaxed text-slate-500">
+          The map currently shows an approximate study-area location. Official
+          AOI boundaries and processed satellite-derived forest layers will be
+          added after spatial-data integration.
+        </p>
+      </div>
     </section>
   );
 };

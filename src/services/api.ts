@@ -12,17 +12,29 @@ import type {
   ChangeEvent,
 } from "../types/forest";
 
-// Enable mock data until the backend is ready.
-const USE_MOCK_DATA = true;
+// Mock data is enabled by default.
+// Set VITE_USE_MOCK_DATA=false to use the real backend.
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA !== "false";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000"
+).replace(/\/$/, "");
 
 async function fetchAPI<T>(endpoint: string): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`);
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
 
   if (!response.ok) {
-    throw new Error(`API request failed: ${response.status}`);
+    const errorMessage = await response.text();
+
+    throw new Error(
+      `API request failed (${response.status}): ${
+        errorMessage || response.statusText
+      }`,
+    );
   }
 
   return response.json() as Promise<T>;

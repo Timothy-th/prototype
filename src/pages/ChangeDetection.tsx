@@ -49,49 +49,54 @@ const ChangeDetection = () => {
       title: "Potential Change Events",
       value: totalEvents,
       icon: ScanSearch,
-      color: "#285943",
-      bg: "#E9F1E6",
+      color: "#34D399",
+      bg: "bg-emerald-500/10",
+      border: "border-emerald-500/20",
     },
     {
       title: "High Priority",
       value: highPriority,
       icon: AlertTriangle,
-      color: "#D97865",
-      bg: "#FCEDE9",
+      color: "#FB7185",
+      bg: "bg-rose-500/10",
+      border: "border-rose-500/20",
     },
     {
       title: "Areas Under Review",
       value: areasUnderReview,
       icon: Trees,
-      color: "#B58B42",
-      bg: "#FFF4DF",
+      color: "#FBBF24",
+      bg: "bg-amber-500/10",
+      border: "border-amber-500/20",
     },
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-slate-100">
       {/* Heading */}
       <section>
-        <div className="flex items-center gap-2 text-xs font-semibold text-forest">
+        <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-emerald-400">
           <ScanSearch size={15} />
           FOREST CHANGE MONITORING
         </div>
 
-        <h1 className="mt-3 font-heading text-3xl font-extrabold text-ink">
+        <h1 className="mt-3 font-heading text-3xl font-extrabold text-slate-100">
           Change Detection
         </h1>
 
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
           Identify and review potential forest changes through satellite
           observations across Bago Yoma.
         </p>
       </section>
 
       {/* Demo notice */}
-      <div className="rounded-xl border border-[#F0DDBB] bg-[#FFF8EA] p-4">
-        <p className="text-xs font-bold text-[#98713A]">DEMONSTRATION DATA</p>
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-4">
+        <p className="text-xs font-bold tracking-wider text-amber-400">
+          DEMONSTRATION DATA
+        </p>
 
-        <p className="mt-1 text-[11px] leading-5 text-[#98713A]">
+        <p className="mt-1 text-[11px] leading-5 text-amber-200/70">
           All events, locations, dates, and confidence scores below are
           fabricated examples for interface testing. They are not actual
           forest-loss detections.
@@ -106,23 +111,22 @@ const ChangeDetection = () => {
           return (
             <div
               key={card.title}
-              className="rounded-2xl border border-[#E5ECE5] bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-[#334155] bg-[#111827] p-5 shadow-lg shadow-black/10 transition hover:border-slate-600"
             >
               <div className="flex items-center justify-between">
-                <p className="text-xs font-semibold text-muted">{card.title}</p>
+                <p className="text-xs font-semibold text-slate-400">
+                  {card.title}
+                </p>
 
                 <div
-                  className="flex h-10 w-10 items-center justify-center rounded-xl"
-                  style={{
-                    backgroundColor: card.bg,
-                    color: card.color,
-                  }}
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl border ${card.bg} ${card.border}`}
+                  style={{ color: card.color }}
                 >
                   <Icon size={20} />
                 </div>
               </div>
 
-              <h3 className="mt-5 font-heading text-3xl font-extrabold text-ink">
+              <h3 className="mt-5 font-heading text-3xl font-extrabold text-slate-100">
                 {loading ? "..." : error ? "—" : card.value}
               </h3>
             </div>
@@ -131,45 +135,47 @@ const ChangeDetection = () => {
       </section>
 
       {/* Events */}
-      <section className="overflow-hidden rounded-2xl border border-[#E5ECE5] bg-white shadow-sm">
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#E5ECE5] p-6">
+      <section className="overflow-hidden rounded-2xl border border-[#334155] bg-[#111827] shadow-lg shadow-black/10">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-700 p-6">
           <div>
-            <h2 className="font-heading text-base font-bold text-ink">
+            <h2 className="font-heading text-base font-bold text-slate-100">
               Potential Change Events
             </h2>
 
-            <p className="mt-1 text-xs text-muted">
+            <p className="mt-1 text-xs text-slate-400">
               Illustrative events awaiting verification
             </p>
           </div>
 
-          <span className="rounded-full bg-sage-light px-3 py-1 text-[10px] font-bold text-forest">
+          <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-bold text-emerald-400">
             {loading ? "LOADING..." : `${totalEvents} DEMO EVENTS`}
           </span>
         </div>
 
-        <div className="divide-y divide-[#EDF1EC]">
+        <div className="divide-y divide-slate-700/70">
           {loading ? (
-            <p className="p-6 text-sm text-muted">Loading change events...</p>
+            <p className="p-6 text-sm text-slate-400">
+              Loading change events...
+            </p>
           ) : error ? (
-            <p className="p-6 text-sm text-red-600">{error}</p>
+            <p className="p-6 text-sm text-rose-400">{error}</p>
           ) : changeEvents.length === 0 ? (
-            <p className="p-6 text-sm text-muted">
+            <p className="p-6 text-sm text-slate-400">
               No potential change events available.
             </p>
           ) : (
             changeEvents.map((event) => {
               const eventColor =
                 event.priority === "High"
-                  ? "#D97865"
+                  ? "#FB7185"
                   : event.priority === "Medium"
-                    ? "#D9A44F"
-                    : "#77AE68";
+                    ? "#FBBF24"
+                    : "#4ADE80";
 
               return (
                 <div
                   key={event.id}
-                  className="flex flex-col gap-4 p-5 transition hover:bg-[#FAFCF9] md:flex-row md:items-center"
+                  className="flex flex-col gap-4 p-5 transition-colors hover:bg-slate-800/40 md:flex-row md:items-center"
                 >
                   <div
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
@@ -183,7 +189,7 @@ const ChangeDetection = () => {
 
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="text-sm font-bold text-ink">
+                      <h3 className="text-sm font-bold text-slate-100">
                         {event.changeType}
                       </h3>
 
@@ -198,7 +204,7 @@ const ChangeDetection = () => {
                       </span>
                     </div>
 
-                    <div className="mt-2 flex flex-wrap gap-4 text-[10px] text-muted">
+                    <div className="mt-2 flex flex-wrap gap-4 text-[10px] text-slate-400">
                       <span className="flex items-center gap-1">
                         <MapPin size={12} />
                         {event.location}
@@ -210,7 +216,7 @@ const ChangeDetection = () => {
                       </span>
                     </div>
 
-                    <p className="mt-2 text-[11px] text-muted">
+                    <p className="mt-2 text-[11px] text-slate-500">
                       Status: {event.status}
                     </p>
                   </div>
@@ -218,18 +224,18 @@ const ChangeDetection = () => {
                   <div className="flex items-center gap-4 md:w-40">
                     <div className="flex-1">
                       <div className="mb-1 flex justify-between text-[10px]">
-                        <span className="text-muted">Demo score</span>
+                        <span className="text-slate-500">Demo score</span>
 
-                        <span className="font-bold text-ink">
+                        <span className="font-bold text-slate-200">
                           {event.confidence !== null
                             ? `${event.confidence}%`
                             : "N/A"}
                         </span>
                       </div>
 
-                      <div className="h-1.5 overflow-hidden rounded-full bg-[#EDF1EC]">
+                      <div className="h-1.5 overflow-hidden rounded-full bg-slate-700">
                         <div
-                          className="h-full rounded-full"
+                          className="h-full rounded-full transition-all duration-500"
                           style={{
                             width: `${event.confidence ?? 0}%`,
                             backgroundColor: eventColor,
@@ -238,7 +244,10 @@ const ChangeDetection = () => {
                       </div>
                     </div>
 
-                    <ArrowUpRight size={17} className="text-muted" />
+                    <ArrowUpRight
+                      size={17}
+                      className="shrink-0 text-slate-500"
+                    />
                   </div>
                 </div>
               );
@@ -248,16 +257,16 @@ const ChangeDetection = () => {
       </section>
 
       {/* Interpretation note */}
-      <section className="rounded-2xl border border-[#E5ECE5] bg-[#F3F7F0] p-5">
+      <section className="rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-5">
         <div className="flex items-start gap-3">
-          <AlertTriangle size={19} className="mt-0.5 shrink-0 text-forest" />
+          <AlertTriangle size={19} className="mt-0.5 shrink-0 text-cyan-400" />
 
           <div>
-            <h3 className="text-sm font-bold text-forest">
+            <h3 className="text-sm font-bold text-cyan-300">
               Important: Detection is not confirmation
             </h3>
 
-            <p className="mt-2 text-xs leading-6 text-[#64766A]">
+            <p className="mt-2 text-xs leading-6 text-slate-400">
               Changes in SAR backscatter can result from soil moisture,
               vegetation structure, surface conditions, or other factors.
               Potential events should be checked against optical imagery,

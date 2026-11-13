@@ -36,8 +36,8 @@ const sources: DataSource[] = [
     contribution: "L-band + S-band SAR",
     organization: "NASA / ISRO",
     icon: Satellite,
-    color: "#285943",
-    bg: "#E9F1E6",
+    color: "#34D399",
+    bg: "rgba(16, 185, 129, 0.12)",
     url: "https://nisar.jpl.nasa.gov/",
     status: "Mock Data",
   },
@@ -50,8 +50,8 @@ const sources: DataSource[] = [
     contribution: "C-band SAR",
     organization: "European Space Agency",
     icon: Radar,
-    color: "#5479A3",
-    bg: "#EDF3FA",
+    color: "#38BDF8",
+    bg: "rgba(56, 189, 248, 0.12)",
     url: "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-1",
     status: "Planned",
   },
@@ -64,8 +64,8 @@ const sources: DataSource[] = [
     contribution: "Optical imagery + NDVI",
     organization: "European Space Agency",
     icon: Leaf,
-    color: "#77AE68",
-    bg: "#EFF6EA",
+    color: "#4ADE80",
+    bg: "rgba(74, 222, 128, 0.12)",
     url: "https://www.esa.int/Applications/Observing_the_Earth/Copernicus/Sentinel-2",
     status: "Mock Data",
   },
@@ -78,8 +78,8 @@ const sources: DataSource[] = [
     contribution: "Canopy height + structure",
     organization: "NASA",
     icon: Trees,
-    color: "#A47735",
-    bg: "#FFF4DF",
+    color: "#FBBF24",
+    bg: "rgba(251, 191, 36, 0.12)",
     url: "https://gedi.umd.edu/",
     status: "Planned",
   },
@@ -92,8 +92,8 @@ const sources: DataSource[] = [
     contribution: "Tree-cover loss reference",
     organization: "University of Maryland",
     icon: Database,
-    color: "#9872A8",
-    bg: "#F4EFF8",
+    color: "#C084FC",
+    bg: "rgba(192, 132, 252, 0.12)",
     url: "https://glad.earthengine.app/view/global-forest-change",
     status: "Planned",
   },
@@ -104,18 +104,18 @@ const statusStyles: Record<
   { color: string; bg: string; icon: typeof CheckCircle2 }
 > = {
   "Mock Data": {
-    color: "#A47735",
-    bg: "#FFF4DF",
+    color: "#FBBF24",
+    bg: "rgba(251, 191, 36, 0.12)",
     icon: FlaskConical,
   },
   Planned: {
-    color: "#829087",
-    bg: "#F0F2F0",
+    color: "#94A3B8",
+    bg: "rgba(148, 163, 184, 0.12)",
     icon: Clock3,
   },
   Integrated: {
-    color: "#285943",
-    bg: "#E9F1E6",
+    color: "#34D399",
+    bg: "rgba(16, 185, 129, 0.12)",
     icon: CheckCircle2,
   },
 };
@@ -134,66 +134,68 @@ const DataSources = () => {
   ).length;
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-slate-100">
       {/* Heading */}
       <section>
-        <div className="flex items-center gap-2 text-xs font-semibold text-forest">
+        <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-emerald-400">
           <Database size={15} />
           EARTH OBSERVATION DATA
         </div>
 
-        <h1 className="mt-3 font-heading text-3xl font-extrabold text-ink">
+        <h1 className="mt-3 font-heading text-3xl font-extrabold text-slate-100">
           Data Sources
         </h1>
 
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-muted">
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
           Explore the satellite missions and reference datasets that support our
           forest-monitoring workflow in Bago Yoma.
         </p>
       </section>
 
       {/* Integration Summary */}
-      <section className="rounded-2xl border border-[#E5ECE5] bg-white p-5 shadow-sm">
+      <section className="rounded-2xl border border-[#334155] bg-[#111827] p-5 shadow-lg shadow-black/10">
         <div className="flex items-start gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sage-light text-forest">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
             <Database size={20} />
           </div>
 
           <div>
-            <h2 className="text-sm font-bold text-ink">
+            <h2 className="text-sm font-bold text-slate-100">
               Data Integration Status
             </h2>
 
-            <p className="mt-1 text-xs leading-5 text-muted">
+            <p className="mt-1 text-xs leading-5 text-slate-400">
               Track the current integration progress of our planned datasets.
             </p>
           </div>
         </div>
 
         <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="rounded-xl bg-[#FFF8E9] p-4">
-            <p className="text-xs text-[#A47735]">Mock Data</p>
-            <p className="mt-1 text-2xl font-extrabold text-ink">{mockCount}</p>
+          <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4">
+            <p className="text-xs text-amber-400">Mock Data</p>
+            <p className="mt-1 text-2xl font-extrabold text-slate-100">
+              {mockCount}
+            </p>
           </div>
 
-          <div className="rounded-xl bg-[#F0F2F0] p-4">
-            <p className="text-xs text-muted">Planned</p>
-            <p className="mt-1 text-2xl font-extrabold text-ink">
+          <div className="rounded-xl border border-slate-700 bg-slate-800/50 p-4">
+            <p className="text-xs text-slate-400">Planned</p>
+            <p className="mt-1 text-2xl font-extrabold text-slate-100">
               {plannedCount}
             </p>
           </div>
 
-          <div className="rounded-xl bg-[#E9F1E6] p-4">
-            <p className="text-xs text-forest">Integrated</p>
-            <p className="mt-1 text-2xl font-extrabold text-ink">
+          <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+            <p className="text-xs text-emerald-400">Integrated</p>
+            <p className="mt-1 text-2xl font-extrabold text-slate-100">
               {integratedCount}
             </p>
           </div>
         </div>
 
         <div className="mt-4 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[#D9A44F]" />
-          <span className="text-[10px] font-bold text-[#A47735]">
+          <span className="h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+          <span className="text-[10px] font-bold tracking-wide text-amber-400">
             PROTOTYPE — LIVE DATA INTEGRATION IN PROGRESS
           </span>
         </div>
@@ -202,11 +204,11 @@ const DataSources = () => {
       {/* Source Cards */}
       <section>
         <div className="mb-4">
-          <h2 className="font-heading text-base font-bold text-ink">
+          <h2 className="font-heading text-base font-bold text-slate-100">
             Satellite & Reference Datasets
           </h2>
 
-          <p className="mt-1 text-xs text-muted">
+          <p className="mt-1 text-xs text-slate-400">
             Five planned sources for multi-sensor forest monitoring
           </p>
         </div>
@@ -220,7 +222,7 @@ const DataSources = () => {
             return (
               <article
                 key={source.name}
-                className="rounded-2xl border border-[#E5ECE5] bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                className="rounded-2xl border border-[#334155] bg-[#111827] p-5 shadow-lg shadow-black/10 transition duration-200 hover:-translate-y-0.5 hover:border-slate-600 hover:shadow-xl"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
@@ -235,11 +237,11 @@ const DataSources = () => {
                     </div>
 
                     <div>
-                      <h3 className="font-heading text-base font-extrabold text-ink">
+                      <h3 className="font-heading text-base font-extrabold text-slate-100">
                         {source.name}
                       </h3>
 
-                      <p className="mt-0.5 text-[10px] text-muted">
+                      <p className="mt-0.5 text-[10px] text-slate-500">
                         {source.fullName}
                       </p>
                     </div>
@@ -267,27 +269,27 @@ const DataSources = () => {
                   <span className="text-[10px] font-bold">{source.status}</span>
                 </div>
 
-                <p className="mt-3 text-xs leading-6 text-muted">
+                <p className="mt-3 text-xs leading-6 text-slate-400">
                   {source.description}
                 </p>
 
-                <div className="mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[#F7F9F6] p-3">
+                <div className="mt-4 grid grid-cols-2 gap-3 rounded-xl border border-slate-700/70 bg-[#0B1220] p-3">
                   <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-wide text-muted">
+                    <p className="text-[9px] font-semibold uppercase tracking-wide text-slate-500">
                       Contribution
                     </p>
 
-                    <p className="mt-1 text-[11px] font-bold text-ink">
+                    <p className="mt-1 text-[11px] font-bold text-slate-200">
                       {source.contribution}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-[9px] font-semibold uppercase tracking-wide text-muted">
+                    <p className="text-[9px] font-semibold uppercase tracking-wide text-slate-500">
                       Organization
                     </p>
 
-                    <p className="mt-1 text-[11px] font-bold text-ink">
+                    <p className="mt-1 text-[11px] font-bold text-slate-200">
                       {source.organization}
                     </p>
                   </div>
@@ -297,7 +299,7 @@ const DataSources = () => {
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-forest hover:underline"
+                  className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-emerald-400 transition hover:text-emerald-300"
                 >
                   Explore dataset
                   <ExternalLink size={13} />
@@ -309,12 +311,12 @@ const DataSources = () => {
       </section>
 
       {/* Workflow */}
-      <section className="rounded-2xl border border-[#E5ECE5] bg-[#F3F7F0] p-6">
-        <h2 className="font-heading text-base font-bold text-forest">
+      <section className="rounded-2xl border border-[#334155] bg-[#111827] p-6">
+        <h2 className="font-heading text-base font-bold text-slate-100">
           How Our Data Works Together
         </h2>
 
-        <p className="mt-2 text-xs leading-6 text-[#64766A]">
+        <p className="mt-2 text-xs leading-6 text-slate-400">
           Radar observations help identify changes in surface and vegetation
           structure. Optical imagery, canopy measurements, and historical forest
           references provide additional evidence to interpret and evaluate those
@@ -322,26 +324,32 @@ const DataSources = () => {
         </p>
 
         <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <div className="rounded-xl bg-white p-4">
-            <Satellite size={20} className="text-forest" />
-            <p className="mt-3 text-xs font-bold text-ink">1. Observe</p>
-            <p className="mt-1 text-[10px] leading-5 text-muted">
+          <div className="rounded-xl border border-slate-700 bg-[#0B1220] p-4">
+            <Satellite size={20} className="text-emerald-400" />
+
+            <p className="mt-3 text-xs font-bold text-slate-100">1. Observe</p>
+
+            <p className="mt-1 text-[10px] leading-5 text-slate-400">
               Collect radar and optical observations.
             </p>
           </div>
 
-          <div className="rounded-xl bg-white p-4">
-            <Radar size={20} className="text-forest" />
-            <p className="mt-3 text-xs font-bold text-ink">2. Analyze</p>
-            <p className="mt-1 text-[10px] leading-5 text-muted">
+          <div className="rounded-xl border border-slate-700 bg-[#0B1220] p-4">
+            <Radar size={20} className="text-cyan-400" />
+
+            <p className="mt-3 text-xs font-bold text-slate-100">2. Analyze</p>
+
+            <p className="mt-1 text-[10px] leading-5 text-slate-400">
               Process observations and identify potential changes.
             </p>
           </div>
 
-          <div className="rounded-xl bg-white p-4">
-            <CheckCircle2 size={20} className="text-forest" />
-            <p className="mt-3 text-xs font-bold text-ink">3. Validate</p>
-            <p className="mt-1 text-[10px] leading-5 text-muted">
+          <div className="rounded-xl border border-slate-700 bg-[#0B1220] p-4">
+            <CheckCircle2 size={20} className="text-emerald-400" />
+
+            <p className="mt-3 text-xs font-bold text-slate-100">3. Validate</p>
+
+            <p className="mt-1 text-[10px] leading-5 text-slate-400">
               Compare with supporting evidence before classification.
             </p>
           </div>

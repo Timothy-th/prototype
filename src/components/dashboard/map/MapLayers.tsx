@@ -22,6 +22,27 @@ const MapLayers = () => {
   const [showLoss, setShowLoss] = useState(true);
   const [showBoundary, setShowBoundary] = useState(true);
 
+  const layers = [
+    {
+      label: "Forest Cover",
+      color: "#4ADE80",
+      checked: showForest,
+      toggle: setShowForest,
+    },
+    {
+      label: "Potential Forest Loss",
+      color: "#FB7185",
+      checked: showLoss,
+      toggle: setShowLoss,
+    },
+    {
+      label: "Observation Boundary",
+      color: "#38BDF8",
+      checked: showBoundary,
+      toggle: setShowBoundary,
+    },
+  ];
+
   return (
     <>
       {/* Forest cover overlay */}
@@ -29,8 +50,8 @@ const MapLayers = () => {
         <Polygon
           positions={demoForestArea}
           pathOptions={{
-            color: "#77AE68",
-            fillColor: "#77AE68",
+            color: "#4ADE80",
+            fillColor: "#22C55E",
             fillOpacity: 0.3,
             weight: 2,
           }}
@@ -42,8 +63,8 @@ const MapLayers = () => {
         <Polygon
           positions={demoLossArea}
           pathOptions={{
-            color: "#D97865",
-            fillColor: "#D97865",
+            color: "#FB7185",
+            fillColor: "#F43F5E",
             fillOpacity: 0.65,
             weight: 2,
           }}
@@ -58,7 +79,7 @@ const MapLayers = () => {
             [18.45, 95.95],
           ]}
           pathOptions={{
-            color: "#285943",
+            color: "#38BDF8",
             fillOpacity: 0,
             weight: 2,
             dashArray: "6 6",
@@ -66,56 +87,42 @@ const MapLayers = () => {
         />
       )}
 
-      {/* Layer control */}
+      {/* Dark Layer Control */}
       <div className="leaflet-top leaflet-right">
-        <div className="leaflet-control m-3 w-[210px] rounded-xl border border-[#E5ECE5] bg-white p-4 shadow-lg">
-          <div className="mb-3 flex items-center gap-2 border-b border-[#E5ECE5] pb-3">
-            <Layers size={17} className="text-forest" />
-            <span className="text-xs font-bold text-ink">Map Layers</span>
+        <div className="leaflet-control m-3 w-[220px] rounded-xl border border-slate-700/80 bg-[#111827]/95 p-4 shadow-2xl backdrop-blur-md">
+          {/* Header */}
+          <div className="mb-3 flex items-center gap-2 border-b border-slate-700 pb-3">
+            <Layers size={17} className="text-emerald-400" />
+            <span className="text-xs font-bold tracking-wide text-slate-100">
+              MAP LAYERS
+            </span>
           </div>
 
-          {[
-            {
-              label: "Forest Cover",
-              color: "#77AE68",
-              checked: showForest,
-              toggle: setShowForest,
-            },
-            {
-              label: "Potential Forest Loss",
-              color: "#D97865",
-              checked: showLoss,
-              toggle: setShowLoss,
-            },
-            {
-              label: "Observation Boundary",
-              color: "#285943",
-              checked: showBoundary,
-              toggle: setShowBoundary,
-            },
-          ].map((layer) => (
+          {/* Layer Options */}
+          {layers.map((layer) => (
             <button
               key={layer.label}
               onClick={() => layer.toggle(!layer.checked)}
-              className="flex w-full items-center justify-between gap-2 rounded-lg py-2 text-left hover:bg-page"
+              className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-2.5 text-left transition-colors hover:bg-slate-700/60"
             >
-              <span className="flex items-center gap-2 text-[11px] font-medium text-ink">
+              <span className="flex items-center gap-2 text-[11px] font-medium text-slate-300">
                 <span
-                  className="h-3 w-3 rounded-sm"
+                  className="h-3 w-3 rounded-sm ring-1 ring-white/20"
                   style={{ backgroundColor: layer.color }}
                 />
                 {layer.label}
               </span>
 
               {layer.checked ? (
-                <Eye size={15} className="text-forest" />
+                <Eye size={15} className="shrink-0 text-emerald-400" />
               ) : (
-                <EyeOff size={15} className="text-muted" />
+                <EyeOff size={15} className="shrink-0 text-slate-500" />
               )}
             </button>
           ))}
 
-          <p className="mt-2 border-t border-[#E5ECE5] pt-2 text-[9px] leading-4 text-muted">
+          {/* Footer */}
+          <p className="mt-2 border-t border-slate-700 pt-3 text-[9px] leading-4 text-slate-500">
             Illustrative overlays for interface testing only.
           </p>
         </div>

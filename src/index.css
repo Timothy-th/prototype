@@ -1,20 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap");
 
 @import "tailwindcss";
 
+/* ========================================
+   DESIGN SYSTEM — DANCING WITH SARS
+======================================== */
+
 @theme {
+  /* Forest colors */
   --color-forest: #285943;
-  --color-forest-dark: #1d4232;
+  --color-forest-dark: #183d2b;
+  --color-forest-deep: #102d21;
+
+  /* Nature colors */
   --color-sage: #a8c5a0;
   --color-sage-light: #e9f1e6;
+  --color-moss: #748d63;
   --color-lime: #d8e9b9;
-  --color-page: #f5f8f4;
+
+  /* Editorial colors */
+  --color-cream: #f8f7f0;
+  --color-paper: #f1f0e7;
+  --color-white: #ffffff;
+
+  /* Text colors */
   --color-ink: #263a31;
   --color-muted: #829087;
+  --color-soft: #a5afa7;
 
+  /* Dashboard colors */
+  --color-page: #f5f8f4;
+  --color-border: #e2e9e1;
+
+  /* Typography */
   --font-heading: "Manrope", sans-serif;
   --font-body: "DM Sans", sans-serif;
+  --font-editorial: "Playfair Display", serif;
 }
+
+/* ========================================
+   GLOBAL RESET
+======================================== */
 
 * {
   box-sizing: border-box;
@@ -22,20 +48,26 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f5f8f4;
-  color: #263a31;
-  font-family: "DM Sans", sans-serif;
+
+  background: var(--color-page);
+  color: var(--color-ink);
+
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -44,10 +76,121 @@ button {
 }
 
 a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* ========================================
+   TYPOGRAPHY
+======================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-family: var(--font-heading);
+}
+
+p {
+  line-height: 1.7;
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ========================================
+   SHARED UTILITIES
+======================================== */
+
+.section-container {
+  width: min(100% - 80px, 1440px);
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .section-container {
+    width: calc(100% - 36px);
+  }
+}
+
+.section-label {
+  color: var(--color-forest);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.editorial-heading {
+  font-family: var(--font-editorial);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.soft-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-page);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bdcbbd;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-forest);
+}
+
+/* ========================================
+   SELECTION
+======================================== */
+
+::selection {
+  background: var(--color-sage-light);
+  color: var(--color-forest-dark);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 640px) {
+  .section-container {
+    width: min(100% - 32px, 1280px);
+  }
 }
