@@ -90,7 +90,8 @@ const TakeAction = () => {
       {/* INTRODUCTION */}
       <section className="section-container pb-20 pt-20 lg:pb-28 lg:pt-28">
         <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div>
+          {/* Intro text */}
+          <div className="scroll-reveal-left">
             <p className="section-label mb-5">From awareness to action</p>
 
             <h1 className="editorial-heading max-w-xl text-5xl text-forest-dark sm:text-6xl lg:text-7xl">
@@ -112,19 +113,21 @@ const TakeAction = () => {
             </a>
           </div>
 
-          <div className="relative">
+          {/* Hero image */}
+          <div className="scroll-reveal-right relative">
             <div className="absolute -bottom-5 -left-5 h-32 w-32 rounded-full bg-sage/40 blur-2xl" />
 
             <img
               src={heroImage}
               alt="A green forest landscape"
-              className="relative h-96 w-full rounded-2xl object-cover shadow-xl lg:h-130"
+              className="parallax-image relative h-96 w-full rounded-2xl object-cover shadow-xl lg:h-130"
             />
 
             <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/30 bg-white/90 p-5 backdrop-blur-md sm:bottom-7 sm:left-7 sm:right-auto sm:max-w-xs">
               <p className="font-editorial text-xl text-forest-dark">
                 A healthier forest begins with people who care.
               </p>
+
               <p className="mt-2 text-xs leading-6 text-muted">
                 Awareness is the beginning. Consistent action makes a
                 difference.
@@ -137,7 +140,7 @@ const TakeAction = () => {
       {/* INDIVIDUAL ACTIONS */}
       <section id="individual-actions" className="bg-white py-20 lg:py-28">
         <div className="section-container">
-          <div className="mb-14 max-w-2xl">
+          <div className="scroll-reveal mb-14 max-w-2xl">
             <p className="section-label mb-4">Start where you are</p>
 
             <h2 className="editorial-heading text-4xl text-forest-dark sm:text-5xl">
@@ -150,7 +153,8 @@ const TakeAction = () => {
             </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          {/* Individual action cards */}
+          <div className="scroll-stagger grid gap-5 sm:grid-cols-2">
             {personalActions.map((action) => {
               const Icon = action.icon;
 
@@ -160,7 +164,7 @@ const TakeAction = () => {
                   className="soft-card group p-7 transition duration-300 hover:-translate-y-1 hover:shadow-lg lg:p-9"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sage-light text-forest">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sage-light text-forest transition duration-300 group-hover:scale-110">
                       <Icon size={23} strokeWidth={1.7} />
                     </div>
 
@@ -195,7 +199,8 @@ const TakeAction = () => {
       {/* COMMUNITY ACTIONS */}
       <section className="section-container py-20 lg:py-28">
         <div className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
+          {/* Community introduction */}
+          <div className="scroll-reveal-left">
             <p className="section-label mb-4">Together for forests</p>
 
             <h2 className="editorial-heading text-4xl text-forest-dark sm:text-5xl">
@@ -217,14 +222,15 @@ const TakeAction = () => {
             </Link>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          {/* Community action cards */}
+          <div className="scroll-stagger grid gap-4 sm:grid-cols-2">
             {communityActions.map((action) => {
               const Icon = action.icon;
 
               return (
                 <article
                   key={action.title}
-                  className="rounded-2xl border border-border bg-white p-6 transition hover:border-sage hover:shadow-md"
+                  className="rounded-2xl border border-border bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-sage hover:shadow-md"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-sage-light text-forest">
                     <Icon size={21} strokeWidth={1.7} />
@@ -247,7 +253,7 @@ const TakeAction = () => {
       {/* OBSERVATION TO ACTION */}
       <section className="bg-forest-dark py-20 text-white lg:py-28">
         <div className="section-container">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="scroll-scale mx-auto max-w-3xl text-center">
             <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-sage">
               Observe. Understand. Protect.
             </p>
@@ -285,18 +291,20 @@ const TakeAction = () => {
 
       {/* FINAL MESSAGE */}
       <section className="section-container py-20 text-center lg:py-24">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-light text-forest">
-          <Sprout size={27} strokeWidth={1.6} />
+        <div className="scroll-scale">
+          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-sage-light text-forest">
+            <Sprout size={27} strokeWidth={1.6} />
+          </div>
+
+          <h2 className="editorial-heading mt-7 text-4xl text-forest-dark sm:text-5xl">
+            The future of forests is a shared responsibility.
+          </h2>
+
+          <p className="mx-auto mt-5 max-w-xl leading-8 text-muted">
+            Every informed choice, every community effort, and every act of care
+            can become part of a bigger movement for nature.
+          </p>
         </div>
-
-        <h2 className="editorial-heading mt-7 text-4xl text-forest-dark sm:text-5xl">
-          The future of forests is a shared responsibility.
-        </h2>
-
-        <p className="mx-auto mt-5 max-w-xl leading-8 text-muted">
-          Every informed choice, every community effort, and every act of care
-          can become part of a bigger movement for nature.
-        </p>
       </section>
     </main>
   );

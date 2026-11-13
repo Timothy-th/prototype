@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import PublicNavbar from "./PublicNavbar";
+import PublicScrollEffects from "./PublicScrollEffects";
 
 const PublicLayout = () => {
   return (
@@ -9,6 +10,8 @@ const PublicLayout = () => {
       <main>
         <Outlet />
       </main>
+
+      <PublicScrollEffects />
     </div>
   );
 };

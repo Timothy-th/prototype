@@ -13,11 +13,9 @@ import heroImage from "../assets/image/hero.png";
 const Stories = () => {
   return (
     <div className="overflow-hidden bg-cream">
-      {/* STORY HERO */}
-
       {/* STORIES INTRODUCTION */}
       <section className="section-container pb-16 pt-20 lg:pb-24 lg:pt-28">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-end">
+        <div className="scroll-reveal grid gap-10 lg:grid-cols-2 lg:items-end">
           <div>
             <span className="section-label">Forest Stories · Field Notes</span>
 
@@ -41,11 +39,12 @@ const Stories = () => {
           </div>
         </div>
 
-        <div className="relative mt-14 overflow-hidden rounded-2xl">
+        {/* Featured story image */}
+        <div className="scroll-scale relative mt-14 overflow-hidden rounded-2xl">
           <img
             src={heroImage}
             alt="Aerial view of a tropical forest"
-            className="h-95 w-full object-cover sm:h-120 lg:h-140"
+            className="parallax-image h-95 w-full object-cover sm:h-120 lg:h-140"
           />
 
           <div className="absolute inset-0 bg-linear-to-t from-[#0b241a]/65 via-transparent to-transparent" />
@@ -54,6 +53,7 @@ const Stories = () => {
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-lime">
               Chapter 01
             </span>
+
             <p className="font-editorial mt-2 text-2xl sm:text-3xl">
               The living forest
             </p>
@@ -64,7 +64,7 @@ const Stories = () => {
       {/* CHAPTER 01 */}
       <section id="chapter-one" className="section-container py-24 lg:py-32">
         <div className="grid items-center gap-14 lg:grid-cols-2">
-          <div>
+          <div className="scroll-reveal-left">
             <span className="section-label">
               Chapter 01 — The living forest
             </span>
@@ -87,23 +87,25 @@ const Stories = () => {
 
             <Link
               to="/education"
-              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-forest hover:gap-4"
+              className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-forest transition-all hover:gap-4"
             >
               Discover forest knowledge
               <ArrowRight size={17} />
             </Link>
           </div>
 
-          <div className="relative">
+          <div className="scroll-reveal-right relative">
             <img
               src={heroImage}
               alt="Green forest canopy"
               className="h-100 w-full rounded-2xl object-cover"
             />
+
             <div className="absolute bottom-5 left-5 rounded-xl bg-cream/95 px-5 py-4 backdrop-blur-sm">
               <span className="text-[10px] font-bold uppercase tracking-widest text-moss">
                 A connected ecosystem
               </span>
+
               <p className="font-editorial mt-1 text-xl text-forest-dark">
                 Every part matters.
               </p>
@@ -116,12 +118,14 @@ const Stories = () => {
       <section className="bg-forest-deep py-24 text-white lg:py-32">
         <div className="section-container">
           <div className="grid items-center gap-14 lg:grid-cols-2">
-            <div className="order-2 lg:order-1">
+            {/* Radar illustration */}
+            <div className="scroll-reveal-left order-2 lg:order-1">
               <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-8 sm:p-12">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold uppercase tracking-widest text-lime">
                     Looking beyond the surface
                   </span>
+
                   <Satellite size={24} className="text-lime" />
                 </div>
 
@@ -140,7 +144,8 @@ const Stories = () => {
               </div>
             </div>
 
-            <div className="order-1 lg:order-2">
+            {/* Chapter text */}
+            <div className="scroll-reveal-right order-1 lg:order-2">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-lime">
                 Chapter 02 — Seeing differently
               </span>
@@ -167,7 +172,7 @@ const Stories = () => {
 
       {/* CHAPTER 03 */}
       <section className="section-container py-24 lg:py-32">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="scroll-reveal mx-auto max-w-3xl text-center">
           <span className="section-label">
             Chapter 03 — When signals change
           </span>
@@ -183,7 +188,8 @@ const Stories = () => {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
+        {/* Investigation steps */}
+        <div className="scroll-stagger mt-16 grid gap-6 md:grid-cols-3">
           {[
             {
               title: "Observe",
@@ -209,7 +215,7 @@ const Stories = () => {
             return (
               <article
                 key={item.title}
-                className="rounded-2xl border border-forest/10 bg-paper p-8"
+                className="rounded-2xl border border-forest/10 bg-paper p-8 transition duration-300 hover:-translate-y-1 hover:shadow-lg"
               >
                 <span className="font-heading text-xs font-bold text-moss">
                   STEP 0{index + 1}
@@ -231,7 +237,7 @@ const Stories = () => {
           })}
         </div>
 
-        <p className="mt-8 text-center text-xs leading-6 text-muted">
+        <p className="scroll-reveal mt-8 text-center text-xs leading-6 text-muted">
           Radar anomalies are indicators for investigation, not confirmed
           evidence of deforestation or forest degradation.
         </p>
@@ -241,7 +247,7 @@ const Stories = () => {
       <section className="bg-paper py-24 lg:py-32">
         <div className="section-container">
           <div className="grid items-center gap-14 lg:grid-cols-2">
-            <div>
+            <div className="scroll-reveal-left">
               <span className="section-label">
                 Chapter 04 — A changing landscape
               </span>
@@ -263,24 +269,27 @@ const Stories = () => {
 
               <Link
                 to="/detection"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-forest"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-forest transition-all hover:gap-4"
               >
                 Explore forest change
                 <ArrowUpRight size={17} />
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            {/* Year comparison */}
+            <div className="scroll-reveal-right grid grid-cols-2 gap-4">
               <div className="overflow-hidden rounded-2xl">
                 <img
                   src={heroImage}
                   alt="Illustrative forest landscape"
                   className="h-64 w-full object-cover"
                 />
+
                 <div className="bg-forest px-5 py-4 text-white">
                   <span className="text-xs uppercase tracking-widest text-lime">
                     Earlier period
                   </span>
+
                   <p className="font-editorial mt-1 text-2xl">2020</p>
                 </div>
               </div>
@@ -291,17 +300,19 @@ const Stories = () => {
                   alt="Illustrative forest landscape"
                   className="h-64 w-full object-cover"
                 />
+
                 <div className="bg-forest-dark px-5 py-4 text-white">
                   <span className="text-xs uppercase tracking-widest text-lime">
                     Later period
                   </span>
+
                   <p className="font-editorial mt-1 text-2xl">2026</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <p className="mt-8 text-center text-xs text-muted">
+          <p className="scroll-reveal mt-8 text-center text-xs text-muted">
             Illustrative imagery only. Actual forest change results will be
             presented when satellite data processing is complete.
           </p>
@@ -314,7 +325,7 @@ const Stories = () => {
           <img src={heroImage} alt="" className="h-full w-full object-cover" />
         </div>
 
-        <div className="section-container relative mx-auto max-w-3xl">
+        <div className="scroll-scale section-container relative mx-auto max-w-3xl">
           <Sprout size={38} className="mx-auto text-lime" />
 
           <span className="mt-7 block text-xs font-bold uppercase tracking-[0.2em] text-lime">
@@ -353,10 +364,11 @@ const Stories = () => {
 
       {/* FOOTER */}
       <footer className="bg-[#0b241a] py-8 text-white/50">
-        <div className="section-container flex flex-col justify-between gap-4 text-xs sm:flex-row sm:items-center">
+        <div className="scroll-reveal section-container flex flex-col justify-between gap-4 text-xs sm:flex-row sm:items-center">
           <span className="font-heading font-bold tracking-wide text-white/80">
             Dancing with SARs
           </span>
+
           <span>Every forest has a story worth protecting.</span>
         </div>
       </footer>

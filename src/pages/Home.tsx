@@ -9,6 +9,7 @@ import {
   Trees,
   ShieldCheck,
 } from "lucide-react";
+
 import heroImage from "../assets/image/hero.png";
 import home from "../assets/image/home.png";
 
@@ -16,14 +17,13 @@ const Home = () => {
   return (
     <div className="overflow-hidden bg-cream">
       {/* HERO */}
-
       <section className="relative min-h-162.5 overflow-hidden bg-forest-deep">
         {/* Background image */}
         <div className="absolute inset-0">
           <img
             src={heroImage}
             alt="Forest landscape"
-            className="h-full w-full object-cover object-center"
+            className="parallax-image h-full w-full object-cover object-center"
           />
 
           {/* Cinematic overlay */}
@@ -36,12 +36,12 @@ const Home = () => {
         {/* Hero content */}
         <div className="section-container relative flex min-h-162.5 items-center py-24">
           <div className="max-w-3xl text-white">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] backdrop-blur-sm">
+            <span className="hero-content mb-7 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] backdrop-blur-sm">
               <span className="h-2 w-2 rounded-full bg-lime" />
               Forest monitoring & conservation
             </span>
 
-            <h1 className="font-editorial text-5xl leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
+            <h1 className="hero-content font-editorial text-5xl leading-[1.08] tracking-tight sm:text-6xl lg:text-7xl">
               Every forest has
               <br />
               a story worth
@@ -49,13 +49,13 @@ const Home = () => {
               <span className="italic text-lime">protecting.</span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-sm leading-8 text-white/85 sm:text-base">
+            <p className="hero-content mt-7 max-w-xl text-sm leading-8 text-white/85 sm:text-base">
               Discover how satellite technology helps us understand forest
               change, investigate environmental signals, and inspire action for
               the future of Bago Yoma.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="hero-content mt-10 flex flex-wrap items-center gap-4">
               <Link
                 to="/monitor"
                 className="inline-flex items-center gap-3 rounded-full bg-forest px-7 py-4 text-sm font-bold text-forest-dark transition hover:bg-white"
@@ -73,7 +73,7 @@ const Home = () => {
               </Link>
             </div>
 
-            <div className="mt-16 flex items-center gap-3 text-xs font-medium text-white/60">
+            <div className="hero-content mt-16 flex items-center gap-3 text-xs font-medium text-white/60">
               <ArrowDown size={16} />
               Scroll to explore
             </div>
@@ -83,9 +83,10 @@ const Home = () => {
 
       {/* INTRODUCTION */}
       <section className="section-container py-24 lg:py-32">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
+        <div className="scroll-reveal grid gap-12 lg:grid-cols-2 lg:items-end">
           <div>
             <span className="section-label">Why this matters</span>
+
             <h2 className="editorial-heading mt-5 max-w-xl text-4xl text-forest-dark sm:text-5xl">
               A changing forest needs more than just observation.
             </h2>
@@ -97,6 +98,7 @@ const Home = () => {
               resources, and sustain communities. Yet changes can happen
               gradually and across places that are difficult to observe.
             </p>
+
             <p className="mt-4 text-sm leading-8 text-muted sm:text-base">
               By bringing satellite observations, field investigation, and
               conservation awareness together, we can turn complex environmental
@@ -109,18 +111,20 @@ const Home = () => {
       {/* THREE STAGES */}
       <section className="bg-paper py-24">
         <div className="section-container">
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="scroll-reveal mx-auto max-w-2xl text-center">
             <span className="section-label">Our approach</span>
+
             <h2 className="editorial-heading mt-5 text-4xl text-forest-dark sm:text-5xl">
               From observation to action.
             </h2>
+
             <p className="mt-5 text-sm leading-7 text-muted">
               Understanding forest change is a journey. We bring three important
               stages together.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
+          <div className="scroll-stagger mt-16 grid gap-6 md:grid-cols-3">
             {[
               {
                 number: "01",
@@ -155,6 +159,7 @@ const Home = () => {
                     <span className="font-heading text-sm font-bold text-moss">
                       {item.number}
                     </span>
+
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sage-light text-forest">
                       <Icon size={22} strokeWidth={1.7} />
                     </div>
@@ -163,6 +168,7 @@ const Home = () => {
                   <h3 className="font-editorial mt-10 text-3xl text-forest-dark">
                     {item.title}
                   </h3>
+
                   <p className="mt-4 text-sm leading-7 text-muted">
                     {item.description}
                   </p>
@@ -176,28 +182,35 @@ const Home = () => {
       {/* MONITORING FEATURE */}
       <section className="section-container py-24 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div className="relative min-h-90 overflow-hidden rounded-2xl bg-forest">
+          {/* Image */}
+          <div className="scroll-reveal-left relative min-h-90 overflow-hidden rounded-2xl bg-forest">
             <img
               src={home}
               alt="Forest landscape viewed from above"
               className="absolute inset-0 h-full w-full object-cover opacity-70"
             />
+
             <div className="absolute inset-0 bg-linear-to-t from-forest-deep/90 via-transparent to-transparent" />
+
             <div className="absolute bottom-8 left-8 right-8 text-white">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-lime">
                 Central Bago Yoma
               </span>
+
               <h3 className="font-editorial mt-3 text-3xl sm:text-4xl">
                 Looking closer at our forests.
               </h3>
             </div>
           </div>
 
-          <div>
+          {/* Text */}
+          <div className="scroll-reveal-right">
             <span className="section-label">Explore the data</span>
+
             <h2 className="editorial-heading mt-5 text-4xl text-forest-dark sm:text-5xl">
               See what satellites can reveal.
             </h2>
+
             <p className="mt-6 text-sm leading-8 text-muted sm:text-base">
               Explore forest change through Sentinel-1 and Sentinel-2
               observations, and examine forest health signals using NISAR radar
@@ -209,10 +222,12 @@ const Home = () => {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-light text-forest">
                   <Trees size={19} />
                 </div>
+
                 <div>
                   <h3 className="font-heading text-sm font-bold text-forest-dark">
                     Forest change detection
                   </h3>
+
                   <p className="mt-1 text-sm leading-6 text-muted">
                     Compare forest conditions across different years.
                   </p>
@@ -223,10 +238,12 @@ const Home = () => {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-light text-forest">
                   <Satellite size={19} />
                 </div>
+
                 <div>
                   <h3 className="font-heading text-sm font-bold text-forest-dark">
                     Forest health monitoring
                   </h3>
+
                   <p className="mt-1 text-sm leading-6 text-muted">
                     Examine unusual signals and identify areas for further
                     investigation.
@@ -238,10 +255,12 @@ const Home = () => {
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sage-light text-forest">
                   <ShieldCheck size={19} />
                 </div>
+
                 <div>
                   <h3 className="font-heading text-sm font-bold text-forest-dark">
                     Evidence before conclusions
                   </h3>
+
                   <p className="mt-1 text-sm leading-6 text-muted">
                     Satellite anomalies indicate possible changes, not confirmed
                     forest degradation.
@@ -263,11 +282,13 @@ const Home = () => {
 
       {/* FINAL CTA */}
       <section className="bg-forest-deep py-24 text-center text-white">
-        <div className="section-container">
+        <div className="scroll-scale section-container">
           <Sprout className="mx-auto text-lime" size={34} strokeWidth={1.5} />
+
           <h2 className="font-editorial mx-auto mt-7 max-w-3xl text-4xl leading-tight sm:text-5xl">
             The future of our forests is a story we can help shape.
           </h2>
+
           <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/65">
             Learn, explore, and discover how small actions can contribute to a
             healthier environment.
@@ -285,10 +306,11 @@ const Home = () => {
 
       {/* FOOTER */}
       <footer className="bg-[#0b241a] py-8 text-white/50">
-        <div className="section-container flex flex-col justify-between gap-4 text-xs sm:flex-row sm:items-center">
+        <div className="scroll-reveal section-container flex flex-col justify-between gap-4 text-xs sm:flex-row sm:items-center">
           <span className="font-heading font-bold tracking-wide text-white/80">
             Dancing with SARs
           </span>
+
           <span>Forest monitoring, understanding & conservation.</span>
         </div>
       </footer>
